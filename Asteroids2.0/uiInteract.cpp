@@ -165,18 +165,21 @@ void Interface::keyEvent(unsigned char key, bool fDown)
 		break;
 	case 27:
 		isEscPress = fDown;
-		if (isFullscreen())
+		if (isFullscreen()) 
+		{
 			toggleFullscreen();
+		}
 		else
 		{
+			// Exit the game
+
 			//glutLeaveMainLoop();
 			//glutDestroyWindow(glutGetWindow());
 		}
 
 		break;
 	case 102:
-		if (!isFullscreen())
-			toggleFullscreen();
+		toggleFullscreen();
 		break;
 	}
 }
@@ -292,6 +295,8 @@ int          Interface::isUpPress    = 0;
 int          Interface::isLeftPress  = 0;
 int          Interface::isRightPress = 0;
 bool         Interface::isSpacePress = false;
+bool         Interface::isEscPress = false;
+bool	     Interface::fullscreen = false;
 bool         Interface::isFunctionOnePress = false;
 bool         Interface::initialized  = false;
 double       Interface::timePeriod   = 1.0 / 30; // default to 30 frames/second
@@ -347,29 +352,18 @@ void Interface::initialize(int argc, char ** argv, const char * title, Point top
 */
    int viewport_width = glutGet(GLUT_SCREEN_WIDTH);
    int viewport_height = glutGet(GLUT_SCREEN_HEIGHT);
-   cout << "before full screen width: " << viewport_width << endl;
-   cout << "before full screen height: " << viewport_height << endl;
 
-   
-
-   viewport_width  = glutGet(GLUT_SCREEN_WIDTH);
-   viewport_height = glutGet(GLUT_SCREEN_HEIGHT);
-   cout << "after full screen width: " << viewport_width << endl;
-   cout << "after full screen height: " << viewport_height << endl;
-
-   
    Point screenTopLeft((int) -(viewport_width / 2), (int) viewport_height / 2);
    Point screenBottomRight((int) viewport_width / 2, (int) -(viewport_height / 2));
-
-   cout << "screen top left: " << screenTopLeft << endl;
-   cout << "screen bottom right: " << screenBottomRight << endl;
-
-   cout << "top left: " << topLeft << endl;
-   cout << "bottom right: " << bottomRight << endl;
-
    
-   gluOrtho2D((int) screenTopLeft.getX(), (int) screenBottomRight.getX(),
-	   (int) screenBottomRight.getY(), (int) screenTopLeft.getY()); // 2D environment
+   // 2D environment
+   gluOrtho2D(
+	   (int) screenTopLeft.getX(), 
+	   (int) screenBottomRight.getX(),
+	   (int) screenBottomRight.getY(), 
+	   (int) screenTopLeft.getY()
+   ); 
+
    glutFullScreen();
    
 

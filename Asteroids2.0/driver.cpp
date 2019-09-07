@@ -34,6 +34,10 @@ void callBack(const Interface *pUI, void *p)
  *********************************/
 int main(int argc, char ** argv)
 {
+   // Menu
+   
+   
+   // Game Loop
    Point topLeft(-300, 300);
    Point bottomRight(300, -300);
    

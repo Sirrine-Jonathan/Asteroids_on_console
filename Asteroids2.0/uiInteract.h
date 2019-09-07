@@ -38,7 +38,7 @@ public:
       initialize(argc, argv, title, topLeft, bottomRight);
    }
    
-   // Destructor, incase any housecleaning needs to occr
+   // Destructor, incase any housecleaning needs to occur
    ~Interface();
 
    // This will set the game in motion
@@ -74,7 +74,7 @@ public:
    bool isSpace()       const { return isSpacePress;       };
    bool isFunctionOne() const { return isFunctionOnePress; };
    bool isEsc()	        const { return isEscPress;         };
-   bool isFullscreen()  const { return fullscreen;         }
+   bool isFullscreen()  const { return fullscreen;         };
 
    Point getTopLeft();
    Point getBottomRight();
@@ -87,7 +87,7 @@ private:
 
    static bool         initialized;  // only run the constructor once!
    static double       timePeriod;   // interval between frame draws
-   static bool         fullscreen;
+   static bool         fullscreen;   // fullscreen or not
    static unsigned int nextTick;     // time (from clock()) of our next draw
 
    static int  isDownPress;          // is the down arrow currently pressed?
